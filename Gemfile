@@ -6,6 +6,16 @@ ruby "3.1.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7", ">= 7.0.7.2"
 
+# DBビューの作成とバージョン管理 [https://github.com/scenic-views/scenic]
+gem 'scenic'
+
+# ページネーター [https://github.com/kaminari/kaminari]
+gem 'kaminari'
+
+# 定数管理
+# [https://github.com/rubyconfig/config]
+gem 'config'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -51,6 +61,13 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  # 環境変数管理
+  # [https://github.com/bkeepers/dotenv]
+  gem 'dotenv-rails'
+
+  # テストフレームワーク
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -62,6 +79,10 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # DBスキーマ情報をモデルなどにコメント出力
+  # [https://github.com/ctran/annotate_models]
+  gem 'annotate'
 end
 
 group :test do

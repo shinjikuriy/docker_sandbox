@@ -4,8 +4,8 @@ services:
     image: postgres
     # dbのユーザー名とパスワードでこれが無いとdbが起動できなかった
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     # 無くても動くけど指定しておくとdocker-composeを停止してもdbの内容が永続化されるため、指定することが多いと思われる
     # https://matsuand.github.io/docs.docker.jp.onthefly/storage/volumes/
     volumes:
@@ -13,6 +13,19 @@ services:
     # 無くても動くが指定しておくとコンテナ停止時にサービスが再起動してくれる
     # https://docs.docker.jp/v19.03/config/container/start-containers-automatically.html
     restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 8080:80
+    volumes:
+      - pgadmin_volume:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: example@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    depends_on:
+      - db
+
   web:
     build: .
     # tmp/pids/server.pidが残ってたら `A server is already running. ~~` のエラーでrailsを起動できないので事前に消してから、`rails sever` する
@@ -33,3 +46,4 @@ services:
       - db
 volumes:
   postgres_volume:
+  pgadmin_volume:
