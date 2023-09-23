@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_051720) do
 
   create_table "joyokanji", force: :cascade do |t|
     t.string "grapheme_orth", null: false, limit: 1
-    t.string "grapheme_var", limit: 1
+    t.string "grapheme_alt", limit: 1
     t.string "grapheme_olds", array: true
     t.string "radicals", array: true
     t.integer "stroke_count"
