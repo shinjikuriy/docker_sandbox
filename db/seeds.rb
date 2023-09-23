@@ -1,7 +1,8 @@
 require 'csv'
 
-CSV.foreach(Rails.root.join('db/source/joyokanji.tsv'), headers: true, col_sep: "\t") do |row|
-  row.delete 'number'
+CSV.foreach(Rails.root.join('db/db_formatted/joyokanji_mod.tsv'), headers: true, col_sep: "\t") do |row|
+  row['grapheme_olds'] = row['grapheme_olds']&.split(',')
+  row['radicals'] = row['radicals']&.split(',')
   row['onyomis'] = row['onyomis']&.split(',')
   row['kunyomis'] = row['kunyomis']&.split(',')
   Joyokanji.create_or_find_by(row.to_h)

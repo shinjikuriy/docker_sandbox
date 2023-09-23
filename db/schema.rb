@@ -15,45 +15,45 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_051720) do
   enable_extension "plpgsql"
 
   create_table "joyokanji", force: :cascade do |t|
-    t.string "grapheme_orth"
-    t.string "grapheme_var"
-    t.string "grapheme_old"
-    t.string "radical"
+    t.string "grapheme_orth", null: false, limit: 1
+    t.string "grapheme_var", limit: 1
+    t.string "grapheme_olds", array: true
+    t.string "radicals", array: true
     t.integer "stroke_count"
     t.string "grade"
     t.integer "added_year"
     t.integer "removed_year"
     t.string "onyomis", array: true
     t.string "kunyomis", array: true
-    t.index ["grapheme_orth", "grapheme_var", "grapheme_old"], name: "joyokanji_index", unique: true
+    t.index ["grapheme_orth", "grapheme_var", "grapheme_olds"], name: "joyokanji_index", unique: true
   end
 
   create_table "mifune_kanjidict", force: :cascade do |t|
-    t.string "kanji", null: false
-    t.string "radical"
-    t.string "radvar"
-    t.string "phonetic"
+    t.string "grapheme", null: false, limit: 1
+    t.string "radical", limit: 1
+    t.string "radical_variant", limit: 1
+    t.string "phonetic_component", limit: 1
     t.string "idc"
     t.string "classification"
-    t.string "reg_on", array: true
-    t.string "reg_kun", array: true
-    t.string "onyomi", array: true
-    t.string "kunyomi", array: true
-    t.string "nanori", array: true
-    t.integer "strokes"
+    t.string "joyo_onyomis", array: true
+    t.string "joyo_kunyomis", array: true
+    t.string "onyomis", array: true
+    t.string "kunyomis", array: true
+    t.string "nanoris", array: true
+    t.integer "stroke_count"
     t.string "grade"
     t.string "jlpt"
     t.string "kanken"
     t.integer "frequency"
-    t.string "meaning", array: true
-    t.string "compact_meaning", array: true
+    t.string "meanings", array: true
+    t.string "compact_meanings", array: true
     t.integer "rtk1_3_old"
     t.integer "rtk1_3_new"
     t.integer "ko2001"
     t.integer "ko2301"
     t.integer "wrp_jkf"
     t.integer "wanikani"
-    t.index ["kanji"], name: "index_mifune_kanjidict_on_kanji", unique: true
+    t.index ["grapheme"], name: "index_mifune_kanjidict_on_grapheme", unique: true
   end
 
   create_table "tatsum_cdj", force: :cascade do |t|
