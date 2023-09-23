@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_051720) do
     t.integer "removed_year"
     t.string "onyomis", array: true
     t.string "kunyomis", array: true
-    t.index ["grapheme_orth", "grapheme_var", "grapheme_olds"], name: "joyokanji_index", unique: true
+    t.index ["grapheme_orth", "grapheme_alt", "grapheme_olds"], name: "joyokanji_index", unique: true
   end
 
   create_table "mifune_kanjidict", force: :cascade do |t|
