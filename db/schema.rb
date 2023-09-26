@@ -112,7 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_051720) do
     t.integer "word_level_for_general_learners", null: false
     t.integer "word_ranking_for_general_learners", null: false
     t.integer "word_level_for_written_japanese"
-    t.integer "u_ranking_for_written_japanese_excluding_assumed_known_words", null: false
+    t.integer "u_ranking_for_written_japanese_excluding_assumed_known_words"
     t.integer "old_jlpt_level", null: false
     t.integer "specificity_level_in_humanities_and_arts_ha"
     t.integer "specificity_level_in_social_sciences_ss"
