@@ -1,3 +1,3 @@
-class TatsumVdrj < ApplicationRecord
+class TatsumVdrj < AppdataRecord
   self.table_name = 'tatsum_vdrj'
 end
